@@ -13,12 +13,15 @@ puts "As you struggle to recall what led you to this moment, you hear a booming 
 puts 
 puts "'Hey, you there! The name's Rurik.....and you are?'"
 puts 
+puts "..."
+puts
 puts "'Pleasure to meet ya', #{name}!'"
 puts
 puts "'Whereabouts are you from then?'"
 
 pcorigin = gets.chomp.capitalize
 #takes player origin from user input, assigns to variable, capitalizes it
+
   if pcorigin.downcase == "skyrim"
     puts
     puts "'Aha! A fellow Skyrim native! Hopefully we can talk about the homeland over a nice mug of spiced mead one day. If we live through this gods-forsaken mess, that is.'"
@@ -29,7 +32,8 @@ pcorigin = gets.chomp.capitalize
 
   puts
   puts "'Say, what class are you? I'm a bit of a thief myself, though I bet I look the fool considering I got myself locked up here. I'm not the quietest unfortunately, try as I might...'"
-  pcclass = gets.chomp
+  pcclass = gets.chomp.capitalize
+#takes player class from user input, assigns to variable
 
 if pcclass.downcase == "stealth archer" || pcclass.downcase == "thief" || pcclass.downcase == "assassin" || pcclass.downcase == "rogue"
   puts
@@ -50,5 +54,7 @@ else
   puts
   puts "'A #{pcclass.downcase}? That's a new one for me. Well, whatever you are, I hope it serves us well. We need to get off this blasted ship..'"
 end 
-
+#this if/else statement gives different responses from Rurik depending on your class
+  
+  puts
   puts "Suddenly, the ship lurches violently, and you are thrown to the wall of your cell. "
