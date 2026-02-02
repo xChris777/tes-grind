@@ -2,22 +2,27 @@ puts "Welcome to TES Grind, an unofficial The Elder Scrolls experience!"
 
 puts "Please enter your name: "
 
-text_delay = 3.5
+text_delay = 2
+text_delay_slow = 3.5
+
+#sets text delay variables
 devmode = false
 name = gets.chomp.capitalize
 if name == "Dev"
   devmode = true
   puts "Dev mode activated"
-  text_delay = 1
+  text_delay = 0.1
   puts "Player Name:"
   name = gets.chomp.capitalize.strip
 end
+
 if name == "Josie" || name == "Jos" || name == "Sicilian Baby" || name == "Josephine"
   puts "Hello my beautiful wife! Thanks for testing this game for me :) Love you!"
 elsif name == "Emmy" || name == "Emilia" || name == "Em" 
   puts "Hello my beautiful child! Thanks for testing this game for me! :) Love you!"
 end
 #takes name from user input, assigns to variable, capitalizes it
+
 sleep(text_delay)
 puts
 puts "#{name}, you are a prisoner on an Imperial prison ship, sailing somewhere along the outskirts of Tamriel."
@@ -70,7 +75,8 @@ elsif pcclass.downcase == "warrior" || pcclass.downcase == "fighter" || pcclass.
 elsif pcclass.downcase == "mage" || pcclass.downcase == "sorcerer" || pcclass.downcase == "wizard"
   puts
   puts "'Oh...a #{pcclass.downcase}? ....Well, I suppose brains over brawn has its merits in a situation like this. Just don't go zapping me accidentally, you hear?'"
-
+elsif pc.downcase == "no class" || pcclass.downcase == "classless"
+  puts "#{pcclass.upcase} eh? No problem, you'll figure it out as we go."
 else
   puts
   puts "'A #{pcclass.downcase}? That's a new one for me. Well, whatever you are, I hope it serves us well. We need to get off this blasted ship..'"
@@ -85,7 +91,7 @@ end
   puts
   puts "In an incredible feat of strength, Rurik wedges the metal piece into the iron bars and pries them apart."
   puts
-  puts "'This should be enough to squeeze out. You lead the way #{name}, we need to make it to the captains quarters. It'll be safer there.'"
+  puts "'This should be enough to squeeze out. You lead the way #{name}, we need to make it to the captain's quarters. It'll be safer there.'"
 
   if pcclass.downcase == "stealth archer" || pcclass.downcase == "thief" || pcclass.downcase == "assassin" || pcclass.downcase == "rogue"
     puts
@@ -99,10 +105,11 @@ Keep an eye out for some arrows. Let's get out of here!'"
   elsif pcclass.downcase == "warrior" || pcclass.downcase == "fighter" || pcclass.downcase == "knight"
     puts
     puts "After you and Rurik squeeze out of the cell, he picks up a rusty iron mace from the ground and hands it to you. 'This should serve, for now at least. Let's get out of here!'"
+  
   elsif pcclass.downcase == "mage" || pcclass.downcase == "sorcerer" || pcclass.downcase == "wizard"
     puts
     puts "After you and Rurik squeeze out of the cell, he picks up a splintering magical staff from a nearby floating shelf and hands it to you. 'This should serve for now. Let's get out of here!'"
-
+  
   else 
     puts "After you and Rurik squeeze out of the cell, he picks up an iron sword. 'This should serve for now. Let's get out of here!'"
   end 
@@ -113,36 +120,60 @@ Keep an eye out for some arrows. Let's get out of here!'"
 
   # DEFINE SKILL VARIABLES HERE!! 
   # !!!!!!!!!!
+
   wood = 0
   woodcuttingLevel = 1
   charLevel = 1
   woodcuttingXP = 0
   charXP = 0
 
+  if woodcuttingXP >= 100
+    woodcuttingLevel += 1
+    puts "You have reached level #{woodcuttingLevel}!"
+    woodcuttingXP = 0
+  end
+  #woodcutting level up system
+  
+  if charXP >= 1000
+    charLevel += 1
+    puts "You have reached level #{charLevel}!"
+    charXP = 0
+  end
+#character level up system
+
   loop do
     
     puts "
     Main Menu
       1. Woodcutting
-      2. Exit
+      2. Placeholder
+      3. Exit
     "
     selection = gets.chomp.strip
   
     if selection == "1" || selection == "1."
-      puts "You begin chopping wood"
-      puts "Press Enter to return to the Main Menu"
+      puts "Press Enter to return to the main menu"
+      puts "You begin to chop a tree"
+
       loop do
-        puts "Chop chop chop"
-        woodcuttingXP = +1 
-        charXP = +1 
+        puts "Chop chop chop.."
+        woodcuttingXP += 2 
+        charXP += 5 
+        wood += 3
         sleep(1)
         if IO.select([STDIN], nil, nil, 0)
           STDIN.gets
+          puts "You have have #{wood} wood"
+          puts "You have achieved level #{woodcuttingLevel} woodcutting"
+          puts "You have #{charXP} experience points"
           break
         end
       end 
 
-    elsif selection == "2" || selection == "2."
+    elsif selection.strip == "2" || selection.strip == "2."
+        puts "Placeholder"
+
+    elsif selection.strip == "3" || selection.strip == "3."
         puts "Goodbye!"
         puts
         exit
