@@ -1,11 +1,88 @@
-#if devmode == true 
-#  puts "dev mode is active"
-#end
-# example of a dev mode dependant conditional 
+=begin
+METHOD TESTS: 
+example of a method 
+ def woodcutting 
+      puts "You begin to chop a tree"
+      loop do
+        puts "Chop chop chop.."
+        woodcuttingXP += 2 
+        charXP += 5 
+        wood += 3
+        #woodcutting level up system
+        if woodcuttingXP >= 100
+          woodcuttingLevel += 1
+          puts "You have reached level #{woodcuttingLevel}!"
+          woodcuttingXP = 0
+        end
+        #character level up system
+        if charXP >= 1000
+          charLevel += 1
+          puts "You have reached level #{charLevel}!"
+          charXP = 0
+        end
+
+        sleep(1)
+        if IO.select([STDIN], nil, nil, 0)
+          STDIN.gets
+          puts "You have #{wood} pieces of wood"
+          puts "You have achieved level #{woodcuttingLevel} woodcutting"
+          puts "You have #{charXP} experience points"
+          break
+        end
+      end 
+end
+
+another method
+  def dialogue_pause
+  sleep(text_delay)
+  puts
+  end
+
+another method
+
+def main_menu
+  loop do
+    
+puts "
+Main Menu
+  1. Woodcutting
+  2. Placeholder
+  3. Exit
+"
+selection = gets.chomp.strip
+
+if selection == "1" || selection == "1."
+  puts "Press Enter to return to the main menu"
+end
+end
+=end
+
+#ACTIVE METHODS
+#dialogue delay
+def dialogue_pause(delay_time)
+  sleep(delay_time)
+  puts
+end
+
+def main_menu
+  
+end
 
 
+def skill_menu 
+  
+end
 
+def woodcutting_skill
+  
+end
 
+def mining_skill
+  
+end
+
+#BEGINNING OF GAME 
+#intro conversation / getting player name, origin, class and dev mode (if dev is entered as name)
 puts "Welcome to TES Grind, an unofficial The Elder Scrolls experience!"
 
 puts "Please enter your name: "
@@ -14,15 +91,15 @@ puts "Please enter your name: "
 text_delay = 2
 text_delay_slow = 3
 
-devmode = false
+dev_mode = false
 
 #checks if name entered is Dev or dev and activates dev mode which currently speeds up text delivery but 
 #will be used for additional testing in the future
 name = gets.chomp.capitalize
 if name == "Dev"
-  devmode = true
+  dev_mode = true
   puts "Dev mode has been activated."
-  sleep(text_delay)
+  dialogue_pause(text_delay)
   puts "Player Name:"
   name = gets.chomp.capitalize.strip
   text_delay = 0.2
@@ -35,26 +112,19 @@ elsif name == "Emmy" || name == "Emilia" || name == "Em"
   puts "Hello my beautiful child! Thanks for testing this game for me! :) Love you!"
 end
 
-sleep(text_delay)
-puts
+dialogue_pause(text_delay)
 puts "#{name}, you are a prisoner on an Imperial prison ship, sailing somewhere along the outskirts of Tamriel."
-puts
-sleep(text_delay)
+dialogue_pause(text_delay)
 puts "You are unsure how you ended up here, as you have no recollection of the past few days. Even memories from prior are currently a hazy blur."
-puts
-sleep(text_delay)
+dialogue_pause(text_delay)
 puts "As you struggle to recall what led you to this moment, you hear a booming voice from the cell next to yours."
-puts 
-sleep(text_delay)
+dialogue_pause(text_delay)
 puts "'Hey, you there! The name's Rurik.....and you are?'"
-puts 
-sleep(text_delay)
+dialogue_pause(text_delay_slow)
 puts "..."
-puts
-sleep(text_delay)
+dialogue_pause(text_delay)
 puts "'Pleasure to meet ya', #{name}!'"
-puts
-sleep(text_delay)
+dialogue_pause(text_delay)
 puts "'Whereabouts are you from then?'"
 
 #takes player origin from user input, assigns to variable, capitalizes it
@@ -73,8 +143,9 @@ pcorigin = gets.chomp.capitalize.strip
   puts
   sleep(text_delay)
   puts "'Say, what class are you? I'm a bit of a thief myself, though I bet I look the fool considering I got myself locked up here. I'm not the most quiet person unfortunately, try as I might...'"
-#takes player class from user input, assigns to variable
-  pcclass = gets.chomp.capitalize.strip
+
+  #takes player class from user input, assigns to variable
+  pcclass = gets.chomp.capitalize.strip 
 
 #this if/else statement gives different responses from Rurik depending on your class
 if pcclass.downcase == "stealth archer" || pcclass.downcase == "thief" || pcclass.downcase == "assassin" || pcclass.downcase == "rogue"
@@ -142,11 +213,11 @@ Keep an eye out for some arrows. Let's get out of here!'"
     puts "After you and Rurik squeeze out of the cell, he picks up an iron sword. 'This should serve for now. Let's get out of here!'"
   end 
 
-  wood = 0
-  woodcuttingLevel = 1
-  charLevel = 1
-  woodcuttingXP = 0
-  charXP = 0
+  @wood = 0
+  @woodcuttingLevel = 1
+  @charLevel = 1
+  @woodcuttingXP = 0
+  @charXP = 0
 
   #main menu with loop
   loop do
@@ -161,32 +232,32 @@ Keep an eye out for some arrows. Let's get out of here!'"
   
     if selection == "1" || selection == "1."
       puts "Press Enter to return to the main menu"
+      
       puts "You begin to chop a tree"
-
       loop do
         puts "Chop chop chop.."
-        woodcuttingXP += 2 
-        charXP += 5 
-        wood += 3
+        @woodcuttingXP += 2 
+        @charXP += 5 
+        @wood += 3
         #woodcutting level up system
-        if woodcuttingXP >= 100
-          woodcuttingLevel += 1
-          puts "You have reached level #{woodcuttingLevel}!"
-          woodcuttingXP = 0
+        if @woodcuttingXP >= 100
+          @woodcuttingLevel += 1
+          puts "You have reached level #{@woodcuttingLevel}!"
+          @woodcuttingXP = 0
         end
         #character level up system
-        if charXP >= 1000
-          charLevel += 1
-          puts "You have reached level #{charLevel}!"
-          charXP = 0
+        if @charXP >= 1000
+          @charLevel += 1
+          puts "You have reached level #{@charLevel}!"
+          @charXP = 0
         end
 
         sleep(1)
         if IO.select([STDIN], nil, nil, 0)
           STDIN.gets
-          puts "You have #{wood} pieces of wood"
-          puts "You have achieved level #{woodcuttingLevel} woodcutting"
-          puts "You have #{charXP} experience points"
+          puts "You have #{@wood} pieces of wood"
+          puts "You have achieved level #{@woodcuttingLevel} woodcutting"
+          puts "You have #{@charXP} experience points"
           break
         end
       end 
@@ -194,9 +265,8 @@ Keep an eye out for some arrows. Let's get out of here!'"
         puts "Placeholder"
     elsif selection == "3" || selection == "3."
         puts "Goodbye!"
-        sleep(text_delay)
-        puts
+        dialogue_pause(text_delay)
         exit
-    else puts "Please input a numerical menu option"
+    else puts "Please input a numerical menu option."
     end
 end
