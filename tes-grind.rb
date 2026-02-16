@@ -57,6 +57,10 @@ end
 end
 =end
 
+#link to player.rb file
+require_relative 'player'
+@player = Player.new
+
 #ACTIVE METHODS
 #dialogue delay
 def dialogue_pause(delay_time)
@@ -76,9 +80,9 @@ def main_menu
     selection = gets.chomp.strip
   
     if selection == "1" || selection == "1."
-      woodcutting_skill
+        @player.woodcutting_skill
     elsif selection == "2" || selection == "2."
-        puts "Mining skill coming soon!"
+        @player.mining_skill
     elsif selection == "3" || selection == "3."
         puts "Goodbye!"
         dialogue_pause(@text_delay)
@@ -93,42 +97,9 @@ def skill_menu
   
 end
 
-def woodcutting_skill
-  puts "Press Enter to return to the main menu"
-      
-  puts "You begin to chop a tree"
-  loop do
-    puts "Chop chop chop.."
-    @woodcuttingXP += 2 
-    @charXP += 5 
-    @wood += 3
-    #woodcutting level up system
-    if @woodcuttingXP >= 100
-      @woodcuttingLevel += 1
-      puts "You have reached level #{@woodcuttingLevel}!"
-      @woodcuttingXP = 0
-    end
-    #character level up system
-    if @charXP >= 1000
-      @charLevel += 1
-      puts "You have reached level #{@charLevel}!"
-      @charXP = 0
-    end
 
-    sleep(1)
-    if IO.select([STDIN], nil, nil, 0)
-      STDIN.gets
-      puts "You have #{@wood} pieces of wood"
-      puts "You have achieved level #{@woodcuttingLevel} woodcutting"
-      puts "You have #{@charXP} experience points"
-      break
-    end
-  end 
-end
 
-def mining_skill
-  
-end
+
 
 #BEGINNING OF GAME 
 #intro conversation / getting player name, origin, class and dev mode (if dev is entered as name)
@@ -137,7 +108,7 @@ puts "Welcome to TES Grind, an unofficial The Elder Scrolls experience!"
 puts "Please enter your name: "
 
 #sets text delay variables
-@text_delay = 2
+@text_delay = 1.5
 @text_delay_slow = 3
 
 dev_mode = false
@@ -176,7 +147,6 @@ dialogue_pause(@text_delay)
 puts "As you struggle to recall what led you to this moment, you hear a booming voice from the cell next to yours."
 dialogue_pause(@text_delay)
 puts "'Hey, you there! The name's Rurik.....and you are?'"
-dialogue_pause(@text_delay_slow)
 puts "..."
 dialogue_pause(@text_delay)
 puts "'Pleasure to meet ya', #{name}!'"
@@ -251,12 +221,7 @@ Keep an eye out for some arrows. Let's get out of here!'"
     dialogue_pause(@text_delay)
     puts "After you and Rurik squeeze out of the cell, he picks up an iron sword. 'This should serve for now. Let's get out of here!'"
   end 
-
-  @wood = 0
-  @woodcuttingLevel = 1
-  @charLevel = 1
-  @woodcuttingXP = 0
-  @charXP = 0
+puts ""
 
   #main menu with loop
   main_menu
