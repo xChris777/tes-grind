@@ -1,3 +1,7 @@
+#uses the yaml tool for saving system
+require 'yaml'
+require_relative 'tes-grind'
+#creates the Player class
 class Player 
   
 def initialize
@@ -12,10 +16,20 @@ def initialize
 @charXP = 0
 end 
 
+#display stats
+def print_stats
+       puts "You have #{@wood} pieces of wood"
+       puts "You have #{@ore} pieces of ore"
+       puts "You have achieved level #{@woodcuttingLevel} woodcutting"
+       puts "You have achieved level #{@miningLevel} mining"
+       puts "You have #{@charXP} experience points"
+       puts "You are level #{@charLevel}"
+end
+
 #woodcutting skill method
 def woodcutting_skill
   puts "Press Enter to return to the main menu"
-      
+  dialogue_pause(@text_delay)
   puts "You begin to chop a tree"
   loop do
     puts "Chop chop chop.."
@@ -41,6 +55,7 @@ def woodcutting_skill
       puts "You have #{@wood} pieces of wood"
       puts "You have achieved level #{@woodcuttingLevel} woodcutting"
       puts "You have #{@charXP} experience points"
+      puts "You are level {@charLevel}"
       break
     end
   end 
@@ -49,7 +64,7 @@ end
 #mining skill method
 def mining_skill
   puts "Press Enter to return to the main menu"
-        
+  dialogue_pause(@text_delay)
   puts "You begin to swing your pickaxe"
     loop do
       puts "Clang, clang, clang.."
@@ -72,9 +87,7 @@ def mining_skill
       sleep(1)
       if IO.select([STDIN], nil, nil, 0)
         STDIN.gets
-        puts "You have #{@wood} pieces of wood"
         puts "You have #{@ore} pieces of ore"
-        puts "You have achieved level #{@woodcuttingLevel} woodcutting"
         puts "You have achieved level #{@miningLevel} mining"
         puts "You have #{@charXP} experience points"
         puts "You are level #{@charLevel}"
@@ -83,6 +96,7 @@ def mining_skill
     end 
 end
 end
+
 
 
 

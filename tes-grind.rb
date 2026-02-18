@@ -108,8 +108,9 @@ puts "Welcome to TES Grind, an unofficial The Elder Scrolls experience!"
 puts "Please enter your name: "
 
 #sets text delay variables
-@text_delay = 1.5
+@text_delay = 2
 @text_delay_slow = 3
+@text_delay_fast = 1
 
 dev_mode = false
 
@@ -142,7 +143,7 @@ end
 dialogue_pause(@text_delay)
 puts "#{name}, you are a prisoner on an Imperial prison ship, sailing somewhere along the outskirts of Tamriel."
 dialogue_pause(@text_delay)
-puts "You are unsure how you ended up here, as you have no recollection of the past few days. Even memories from prior are currently a hazy blur."
+puts "You are unsure how you ended up here, as you have no recollection of the past few days. Even memories from prior are a hazy blur."
 dialogue_pause(@text_delay)
 puts "As you struggle to recall what led you to this moment, you hear a booming voice from the cell next to yours."
 dialogue_pause(@text_delay)
@@ -152,7 +153,8 @@ dialogue_pause(@text_delay)
 puts "'Pleasure to meet ya', #{name}!'"
 dialogue_pause(@text_delay)
 puts "'Whereabouts are you from then?'"
-
+dialogue_pause(@text_delay_fast)
+puts "Enter your character's location of origin:"
 #takes player origin from user input, assigns to variable, capitalizes it
 pcorigin = gets.chomp.capitalize.strip
 
@@ -166,7 +168,9 @@ pcorigin = gets.chomp.capitalize.strip
 
   dialogue_pause(@text_delay)
   puts "'Say, what class are you? I'm a bit of a thief myself, though I bet I look the fool considering I got myself locked up here. I'm not the most quiet person unfortunately, try as I might...'"
-
+  dialogue_pause(@text_delay_fast)
+  puts "Enter your character's class or vocation:"
+  
   #takes player class from user input, assigns to variable
   pcclass = gets.chomp.capitalize.strip 
 
@@ -191,15 +195,18 @@ else
   puts "'A #{pcclass.downcase}? That's a new one for me. Well, whatever you are, I hope it serves us well. We need to get off this blasted ship..'"
 end 
   
-  dialogue_pause(@text_delay)
-  puts "Suddenly, the ship lurches violently, and you are thrown to the wall of your cell. A rush of water and debris suddenly gushes into the hallway with tremendous force. "
-  dialogue_pause(@text_delay)
-  puts "'Woah #{name}, you alright?' You open your eyes and see a tall, dark-haired Nord standing before you with an outstretched hand. 
-  'Looks like the walls of our cells were broken, and I think I can use this metal piece to pry the cell bars apart.'"
-  dialogue_pause(@text_delay) 
-  puts "In an incredible feat of strength, Rurik wedges the metal piece into the iron bars and pries them apart."
-  dialogue_pause(@text_delay)
-  puts "'This should be enough to squeeze out. You lead the way #{name}, we need to make it to the captain's quarters. It'll be safer there.'"
+dialogue_pause(@text_delay)
+puts "Suddenly, the ship lurches violently, and you are thrown to the wall of your cell. A rush of water and debris suddenly gushes into the hallway with tremendous force. "
+dialogue_pause(@text_delay)
+puts "'Woah #{name}, you alright?' You open your eyes and see a tall, dark-haired Nord standing before you with an outstretched hand."
+dialogue_pause(@text_delay)
+puts "'Looks like the walls of our cells were broken, and I think I can use this metal piece to pry the cell bars apart.'"
+dialogue_pause(@text_delay) 
+puts "In an incredible feat of strength, Rurik wedges the metal piece into the iron bars and pries them apart."
+dialogue_pause(@text_delay)
+puts "'Huh, maybe I should be swinging an axe instead of trying to sneak around with a dagger.'"
+dialogue_pause(@text_delay)
+puts "'Anyway, this should be enough to squeeze out. You lead the way #{name}, we need to make it to the captain's quarters. It'll be safer there.'"
 
   #this if/else statement looks at the player class variable and has Rurik give the PC a different weapon or item depending on the class. Classic TES! 
   #In the future this could become the spot where a combat tutorial occurs
@@ -210,18 +217,28 @@ end
   elsif pcclass.downcase == "archer" || pcclass.downcase == "ranger"
     dialogue_pause(@text_delay)
     puts "After you and Rurik squeeze out of the cell, he picks up a water-logged wooden bow and a few arrows from the ground and hands it to you. 'This should serve, for now at least. 
-Keep an eye out for some arrows. Let's get out of here!'"
+    Keep an eye out for some arrows. Let's get out of here!'"
   elsif pcclass.downcase == "warrior" || pcclass.downcase == "fighter" || pcclass.downcase == "knight"
     dialogue_pause(@text_delay)
     puts "After you and Rurik squeeze out of the cell, he picks up a rusty iron mace from the ground and hands it to you. 'This should serve, for now at least. Let's get out of here!'"
-  elsif pcclass.downcase == "mage" || pcclass.downcase == "sorcerer" || pcclass.downcase == "wizard"
+  elsif pcclass.downcase == "mage" || pcclass.downcase == "sorcerer" || pcclass.downcase == "wizard" || pcclass.downcase == "magician"
     dialogue_pause(@text_delay)
     puts "After you and Rurik squeeze out of the cell, he picks up a splintering magical staff from a nearby floating shelf and hands it to you. 'This should serve for now. Let's get out of here!'"
   else 
     dialogue_pause(@text_delay)
     puts "After you and Rurik squeeze out of the cell, he picks up an iron sword. 'This should serve for now. Let's get out of here!'"
+  dialogue_pause(@text_delay)
+  puts "You and Rurik fight your way out of the sinking prison ship room by room, floor by floor. Eventually, the two of you make it to the entrance."
+  dialogue_pause(@text_delay)
+  puts "'#{name}, it looks like we crashed into a large island...'"
+  dialogue_pause(@text_delay)
+  puts "'Aha, I see the Direnni Tower! We must be somewhere off the coast of High Rock near the Iliac Bay!"
+  dialogue_pause(@text_delay) 
+  puts "'Alright #{name}, you start building some shelter, and I'll go scout ahead to make sure there aren't any bandits lurking about.'"
+  dialogue_pause(@text_delay)
+  puts
   end 
-puts ""
+puts "Rurik has left the party. You must gather resources, build a settlement and hone your skills. It will take a lot of work to make it back to the mainland"
 
   #main menu with loop
   main_menu
