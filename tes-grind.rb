@@ -75,7 +75,8 @@ def main_menu
     Main Menu
       1. Woodcutting
       2. Mining
-      3. Exit
+      3. Show stats and inventory
+      4. Exit
     "
     selection = gets.chomp.strip
   
@@ -84,9 +85,11 @@ def main_menu
     elsif selection == "2" || selection == "2."
         @player.mining_skill
     elsif selection == "3" || selection == "3."
-        puts "Goodbye!"
-        dialogue_pause(@text_delay)
-        exit
+        @player.print_stats
+    elsif selection == "4" || selection == "4."
+      puts "Goodbye!"
+      dialogue_pause(@text_delay)
+      exit
     else puts "Please input a numerical menu option."
     end
 end
@@ -178,13 +181,13 @@ pcorigin = gets.chomp.capitalize.strip
 if pcclass.downcase == "stealth archer" || pcclass.downcase == "thief" || pcclass.downcase == "assassin" || pcclass.downcase == "rogue"
   dialogue_pause(@text_delay)
   puts "'Wow, a #{pcclass.downcase}? Great minds think alike, sneaky!'"
-elsif pcclass.downcase == "archer"
+elsif pcclass.downcase == "archer" || pcclass.downcase == "ranger"
   dialogue_pause(@text_delay)
   puts "'Huh, an #{pcclass.downcase}? I think some precision fire will be very useful in our immediate future..'"
 elsif pcclass.downcase == "warrior" || pcclass.downcase == "fighter" || pcclass.downcase == "knight"
   dialogue_pause(@text_delay)
   puts "'A #{pcclass.downcase}, eh? Strong type, I bet. Just the sort we need to get out of this mess.'"
-elsif pcclass.downcase == "mage" || pcclass.downcase == "sorcerer" || pcclass.downcase == "wizard"
+elsif pcclass.downcase == "mage" || pcclass.downcase == "sorcerer" || pcclass.downcase == "wizard" || pcclass.downcase == "magician"
   dialogue_pause(@text_delay)
   puts "'Oh...a #{pcclass.downcase}? ....Well, I suppose brains over brawn has its merits in a situation like this. Just don't go zapping me accidentally, you hear?'"
 elsif pcclass.downcase == "no class" || pcclass.downcase == "classless"

@@ -1,6 +1,5 @@
 #uses the yaml tool for saving system
 require 'yaml'
-require_relative 'tes-grind'
 #creates the Player class
 class Player 
   
@@ -29,7 +28,7 @@ end
 #woodcutting skill method
 def woodcutting_skill
   puts "Press Enter to return to the main menu"
-  dialogue_pause(@text_delay)
+  puts
   puts "You begin to chop a tree"
   loop do
     puts "Chop chop chop.."
@@ -55,7 +54,7 @@ def woodcutting_skill
       puts "You have #{@wood} pieces of wood"
       puts "You have achieved level #{@woodcuttingLevel} woodcutting"
       puts "You have #{@charXP} experience points"
-      puts "You are level {@charLevel}"
+      puts "You are level #{@charLevel}"
       break
     end
   end 
@@ -64,7 +63,7 @@ end
 #mining skill method
 def mining_skill
   puts "Press Enter to return to the main menu"
-  dialogue_pause(@text_delay)
+  puts
   puts "You begin to swing your pickaxe"
     loop do
       puts "Clang, clang, clang.."
