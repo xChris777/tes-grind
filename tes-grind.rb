@@ -59,13 +59,22 @@ end
 
 #link to player.rb file
 require_relative 'player'
-@player = Player.new
+SAVE_FILE_NAME = 'tesgrindsave.yaml'
+
+
 
 #ACTIVE METHODS
 #dialogue delay
 def dialogue_pause(delay_time)
   sleep(delay_time)
   puts
+end
+
+def save_game
+  # Serialize the player object into a YAML string
+  YAML.dump(@player)
+  #Save that string to a file
+  File.write('tesgrindsave.yml', yaml_string)
 end
 
 def main_menu
@@ -89,6 +98,7 @@ def main_menu
     elsif selection == "4" || selection == "4."
       puts "Goodbye!"
       dialogue_pause(@text_delay)
+      save_game(player)
       exit
     else puts "Please input a numerical menu option."
     end
@@ -106,12 +116,14 @@ end
 
 #BEGINNING OF GAME 
 #intro conversation / getting player name, origin, class and dev mode (if dev is entered as name)
-puts "Welcome to TES Grind, an unofficial The Elder Scrolls experience!"
 
+if File.exist?('tesgrindsave.yaml') == true
+@player = Player.new
+puts "Welcome to TES Grind, an unofficial The Elder Scrolls experience!"
 puts "Please enter your name: "
 
 #sets text delay variables
-@text_delay = 2
+@text_delay = 3
 @text_delay_slow = 3
 @text_delay_fast = 1
 
@@ -242,7 +254,9 @@ puts "'Anyway, this should be enough to squeeze out. You lead the way #{name}, w
   puts
   end 
 puts "Rurik has left the party. You must gather resources, build a settlement and hone your skills. It will take a lot of work to make it back to the mainland"
-
+dialogue_pause(@text_delay)
+main_menu
+else 
   #main menu with loop
   main_menu
-
+end
