@@ -3,58 +3,60 @@ require 'yaml'
 #creates the Player class
 class Player 
   
-def initialize
+attr_accessor :pc_name, :pc_class, :pc_origin # This allows you to read/write these easily
 
+def initialize
 @wood = 0
 @ore = 0
-@woodcuttingLevel = 1
-@miningLevel = 1
-@charLevel = 1
-@woodcuttingXP = 0
-@miningXP = 0
-@charXP = 0
+@woodcutting_level = 1
+@mining_level = 1
+@pc_level = 1
+@woodcutting_xp = 0
+@mining_xp = 0
+@pc_xp = 0
 end 
 
 #display stats
 def print_stats
+       puts "You are #{@pc_name}, a #{@pc_class} of #{@pc_origin}."
        puts "You have #{@wood} pieces of wood"
        puts "You have #{@ore} pieces of ore"
-       puts "You have achieved level #{@woodcuttingLevel} woodcutting"
-       puts "You have achieved level #{@miningLevel} mining"
-       puts "You have #{@charXP} experience points"
-       puts "You are level #{@charLevel}"
+       puts "You have achieved level #{@woodcutting_level} woodcutting"
+       puts "You have achieved level #{@mining_level} mining"
+       puts "You have #{@pc_xp} experience points"
+       puts "You are level #{@pc_level}"
 end
 
 #woodcutting skill method
 def woodcutting_skill
-  puts "Press Enter to return to the main menu"
+  puts "Press Enter to return to the skill menu"
   puts
   puts "You begin to chop a tree"
   loop do
     puts "Chop chop chop.."
-    @woodcuttingXP += 3 
-    @charXP += 5 
+    @woodcutting_xp += 3 
+    @pc_xp += 5 
     @wood += 3
     #woodcutting level up system
-    if @woodcuttingXP >= 100
-      @woodcuttingLevel += 1
-      puts "You have reached level #{@woodcuttingLevel}!"
-      @woodcuttingXP = 0
+    if @woodcutting_xp >= 100
+      @woodcutting_level += 1
+      puts "You have reached level #{@woodcutting_level}!"
+      @woodcutting_xp = 0
     end
     #character level up system
-    if @charXP >= 800
-      @charLevel += 1
-      puts "You have reached level #{@charLevel}!"
-      @charXP = 0
+    if @pc_xp >= 800
+      @pc_level += 1
+      puts "You have reached level #{@pc_level}!"
+      @pc_xp = 0
     end
 
     sleep(1)
     if IO.select([STDIN], nil, nil, 0)
       STDIN.gets
       puts "You have #{@wood} pieces of wood"
-      puts "You have achieved level #{@woodcuttingLevel} woodcutting"
-      puts "You have #{@charXP} experience points"
-      puts "You are level #{@charLevel}"
+      puts "You have achieved level #{@woodcutting_level} woodcutting"
+      puts "You have #{@pc_xp} experience points"
+      puts "You are level #{@pc_level}"
       break
     end
   end 
@@ -62,34 +64,34 @@ end
 
 #mining skill method
 def mining_skill
-  puts "Press Enter to return to the main menu"
+  puts "Press Enter to return to the skill menu"
   puts
   puts "You begin to swing your pickaxe"
     loop do
       puts "Clang, clang, clang.."
-      @miningXP += 3 
-      @charXP += 5 
+      @mining_xp += 3 
+      @pc_xp += 5 
       @ore += 3
       #mining level up system
-      if @miningXP >= 100
-        @miningLevel += 1
-        puts "You have reached level #{@miningLevel}!"
-        @miningXP = 0
+      if @mining_xp >= 100
+        @mining_level += 1
+        puts "You have reached level #{@mining_level}!"
+        @mining_xp = 0
       end
       #character level up system
-      if @charXP >= 1000
-        @charLevel += 1
-        puts "You have reached level #{@charLevel}!"
-        @charXP = 0
+      if @pc_xp >= 1000
+        @pc_level += 1
+        puts "You have reached level #{@pc_level}!"
+        @pc_xp = 0
       end
   
       sleep(1)
       if IO.select([STDIN], nil, nil, 0)
         STDIN.gets
         puts "You have #{@ore} pieces of ore"
-        puts "You have achieved level #{@miningLevel} mining"
-        puts "You have #{@charXP} experience points"
-        puts "You are level #{@charLevel}"
+        puts "You have achieved level #{@mining_level} mining"
+        puts "You have #{@pc_xp} experience points"
+        puts "You are level #{@pc_level}"
         break
       end
     end 
