@@ -13,7 +13,7 @@ say_hello_delayed(sleep_time)
 
 
 @wood = 0
-@woodcuttingLevel = 1
-@charLevel = 1
-@woodcuttingXP = 0
-@charXP = 0
+@woodcutting_level = 1
+@pc_level = 1
+@woodcutting_xp = 0
+@pc_xp = 0
