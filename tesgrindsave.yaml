@@ -1,9 +1,12 @@
 --- !ruby/object:Player
-wood: 0
-ore: 213
+pc_name: Chris
+pc_class: Mage
+pc_origin: Skyrim
+wood: 15
+ore: 9
 woodcutting_level: 1
-mining_level: 3
+mining_level: 1
 pc_level: 1
-woodcutting_xp: 0
+woodcutting_xp: 15
 mining_xp: 9
-pc_xp: 355
+pc_xp: 40

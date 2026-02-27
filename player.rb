@@ -6,6 +6,9 @@ class Player
 attr_accessor :pc_name, :pc_class, :pc_origin # This allows you to read/write these easily
 
 def initialize
+@pc_name = nil
+@pc_class = nil
+@pc_origin = nil
 @wood = 0
 @ore = 0
 @woodcutting_level = 1
@@ -18,7 +21,7 @@ end
 
 #display stats
 def print_stats
-       puts "You are #{@pc_name}, a #{@pc_class} of #{@pc_origin}."
+       puts "You are #{@pc_name}, a #{@pc_class.downcase} of #{@pc_origin}."
        puts "You have #{@wood} pieces of wood"
        puts "You have #{@ore} pieces of ore"
        puts "You have achieved level #{@woodcutting_level} woodcutting"
